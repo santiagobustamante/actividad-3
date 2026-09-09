@@ -1,0 +1,77 @@
+============================================================
+RESUMEN DE ANALISIS DE CALIDAD
+Problema analizado: Retrasos en la entrega de pedidos
+Fecha de generacion: 2026-09-09 00:28
+============================================================
+
+DIAGRAMA DE PARETO
+--------------------------------------------------
+Se identificaron 9 causas distintas de retraso.
+De estas, 5 causa(s) ('pocas vitales') concentran el 85.1% de los envios retrasados:
+  -> Trafico o congestion vial, Falta de stock en bodega, Direccion incorrecta o incompleta, Mal etiquetado del paquete, Retraso en aduana o documentacion
+
+Segun la regla de Pareto (80/20), enfocar los esfuerzos de mejora en estas 5 causa(s) deberia tener el mayor impacto sobre el problema total, en lugar de repartir recursos entre las 4 causas restantes ('muchas triviales').
+
+
+DIAGRAMA DE ISHIKAWA (CAUSA-EFECTO)
+--------------------------------------------------
+Se identificaron causas en 6 de las 6 categorias clasicas (6M):
+
+  * Mano de Obra: Mal etiquetado del paquete, Direccion incorrecta o incompleta
+  * Metodo: Sobrecarga del centro de distribucion, Retraso en aduana o documentacion
+  * Maquina: Falla mecanica del vehiculo
+  * Material: Falta de stock en bodega
+  * Medio Ambiente: Trafico o congestion vial, Condiciones climaticas adversas
+  * Medicion: Error en sistema de rastreo (GPS/WMS)
+
+La categoria con mas causas identificadas es 'Mano de Obra', lo que sugiere que ahi hay una linea de investigacion prioritaria para el analisis de causa raiz.
+
+
+HOJA DE VERIFICACION
+--------------------------------------------------
+Se cruzo 'causa_retraso' contra 'region'.
+La combinacion con mayor frecuencia es 'Trafico o congestion vial' en 'Centro' con 31 ocurrencias.
+Esta hoja permite ver rapidamente en que combinacion causa-segmento se deberian concentrar los esfuerzos de verificacion y control.
+
+
+HISTOGRAMA
+--------------------------------------------------
+Variable analizada: tiempo_retraso_horas (n = 261)
+Media = 7.80 | Mediana = 7.00 | Desv. estandar = 5.33
+Rango: [0.10, 43.99]
+La distribucion es sesgada a la derecha (cola hacia valores altos) (asimetria = 2.20).
+Prueba de normalidad (Shapiro-Wilk): estadistico = 0.849, p-valor = 0.0000 -> se rechaza la normalidad (p <= 0.05); los datos NO siguen una distribucion normal.
+
+
+DIAGRAMA DE DISPERSION
+--------------------------------------------------
+Variables: distancia_km (X) vs tiempo_retraso_horas (Y), n = 261
+Coeficiente de correlacion de Pearson: r = 0.210 (estadisticamente significativa (p < 0.05))
+Se observa una correlacion debil o nula y positiva entre las dos variables.
+
+
+GRAFICO DE CONTROL
+--------------------------------------------------
+Periodos analizados: 30
+Linea central = 7.59 | LCS = 13.57 | LCI = 1.61
+Se detectaron 1 punto(s) fuera de los limites de control en: [datetime.date(2026, 1, 21)].
+Esto indica causas especiales (no aleatorias) que deben investigarse puntualmente, en lugar de tratarse como variacion normal del proceso.
+
+
+ESTRATIFICACION
+--------------------------------------------------
+Variable 'tiempo_retraso_horas' segmentada por 'region'.
+El estrato con peor desempeno es 'Norte' (promedio = 8.92, n = 34).
+El estrato con mejor desempeno es 'Centro' (promedio = 6.72, n = 88).
+Esta diferencia sugiere que el problema no esta distribuido de forma homogenea: conviene investigar que hace distinto a 'Norte' frente a los demas estratos.
+
+
+============================================================
+PROPUESTA DE MEJORA (borrador automatico)
+============================================================
+Con base en los resultados anteriores, se recomienda:
+1. Atacar primero las causas 'vitales' identificadas en el Pareto, ya que concentran la mayoria de los retrasos.
+2. Usar las categorias del Ishikawa con mas causas asociadas como guia para profundizar el analisis de causa raiz (ej. con 5 porques).
+3. Si el grafico de control mostro puntos fuera de limite, investigar que evento especial ocurrio en esas fechas y documentar una accion correctiva puntual.
+4. Si la estratificacion mostro un estrato claramente peor, priorizar ahi un plan de accion focalizado antes de una solucion generalizada.
+5. Repetir esta medicion despues de implementar mejoras para verificar el impacto (ciclo PHVA: Planear-Hacer-Verificar-Actuar).

@@ -1,0 +1,11 @@
+causa_retraso,Centro,Norte,Occidente,Oriente,Sur,Total
+Condiciones climaticas adversas,1,0,0,3,2,6
+Direccion incorrecta o incompleta,13,5,6,4,7,35
+Error en sistema de rastreo (GPS/WMS),5,0,0,1,1,7
+Falla mecanica del vehiculo,2,1,1,1,4,9
+Falta de stock en bodega,20,10,11,14,10,65
+Mal etiquetado del paquete,9,3,2,4,6,24
+Retraso en aduana o documentacion,4,3,6,4,2,19
+Sobrecarga del centro de distribucion,3,2,4,4,4,17
+Trafico o congestion vial,31,10,10,20,8,79
+Total,88,34,40,55,44,261
